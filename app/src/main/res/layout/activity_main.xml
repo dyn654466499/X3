@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    >
+
+    <RelativeLayout
+        android:id="@+id/rLayout_select_uptown"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/lLayout_uptown"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择小区"
+                android:textSize="20sp"
+                android:textColor="#333333"
+                />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rLayout_select_building"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/rLayout_select_uptown"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="楼栋："
+                android:textSize="16sp"
+                android:textColor="#666666"
+                />
+            <TextView
+                android:id="@+id/tv_building_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1栋3单元"
+                android:textSize="16sp"
+                android:textColor="#666666"
+                />
+        </LinearLayout>
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="#999999"
+            android:layout_alignParentBottom="true"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/lLayout_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/rLayout_select_building"
+      >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="楼层"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="#666666"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="房号"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="#666666"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="房屋成员"
+            android:textSize="16sp"
+            android:textColor="#666666"
+
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/lLayout_info"
+        >
+
+        <ListView
+            android:id="@+id/lv_floor"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scrollbars="none"
+            />
+        <ListView
+            android:id="@+id/lv_room"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scrollbars="none"
+            />
+        <ListView
+            android:id="@+id/lv_house_members"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:scrollbars="none"
+            />
+    </LinearLayout>
+</RelativeLayout>

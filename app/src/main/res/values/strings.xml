@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">X3人脸录入</string>
+    <string name="operation_record">操作记录</string>
+    <string name="my_permission">我的权限</string>
+    <string name="app_version">版本号</string>
+
+</resources>
