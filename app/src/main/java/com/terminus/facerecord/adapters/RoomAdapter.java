@@ -33,6 +33,9 @@ public class RoomAdapter extends BaseAdapter {
         inflater=LayoutInflater.from(context);
     }
 
+    public int getPosition(String text){
+        return data.indexOf(text);
+    }
 
     @Override
     public int getCount() {

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:padding="30dp"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:text="登录"
+        android:textColor="#333333"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <com.terminus.facerecord.views.CustomEditText
+            android:id="@+id/et_login_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入手机号"
+            android:textColorHint="#999999"
+            android:textColor="#333333"
+            android:inputType="phone"
+            android:background="@null"
+            android:drawableRight="@drawable/submit_edit_clear_pressed"
+            android:paddingRight="25dp"
+            android:textCursorDrawable="@null"
+            android:maxLength="11"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#999999"
+            android:layout_marginTop="10dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            >
+
+            <com.terminus.facerecord.views.CustomEditText
+                android:id="@+id/et_login_password"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="请输入密码"
+                android:textColor="#333333"
+                android:textColorHint="#999999"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:maxLength="16"
+                android:singleLine="true"
+                android:background="@null"
+                android:drawableRight="@drawable/submit_edit_clear_pressed"
+                android:paddingRight="15dp"
+                android:textCursorDrawable="@null"
+                />
+
+            <CheckBox
+                android:checked="false"
+                android:id="@+id/ck_password_eye"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:button="@drawable/check_password"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#999999"
+            android:layout_marginTop="10dp"
+            />
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="登录"
+            android:textSize="16sp"
+            android:background="@drawable/theme_button"
+             />
+
+    </LinearLayout>
+</LinearLayout>

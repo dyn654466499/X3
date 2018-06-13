@@ -3,5 +3,9 @@
     <string name="operation_record">操作记录</string>
     <string name="my_permission">我的权限</string>
     <string name="app_version">版本号</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <string name="cancel">取消</string>
+    <string name="sure">确定</string>
 
 </resources>

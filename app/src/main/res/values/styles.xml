@@ -5,4 +5,16 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="loadingDialog" parent="@style/Animation.AppCompat.Dialog">
+        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">false</item><!--半透明-->
+        <item name="android:windowNoTitle">true</item><!--无标题-->
+        <item name="android:windowBackground">@android:color/transparent</item><!--背景透明-->
+        <item name="android:backgroundDimEnabled">false</item><!--模糊-->
+    </style>
+
+    <style name="popwin_anim_style">
+        <item name="android:windowEnterAnimation">@anim/upward</item>
+        <item name="android:windowExitAnimation">@anim/down</item>
+    </style>
 </resources>

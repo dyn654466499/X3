@@ -18,7 +18,7 @@ android {
             //混淆
             minifyEnabled false
 
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
 
         }
         //开发
@@ -28,7 +28,7 @@ android {
             minifyEnabled false
 
             //加载默认混淆配置文件
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
         }
     }
 }
@@ -55,6 +55,8 @@ dependencies {
     implementation "com.android.support:recyclerview-v7:27.1.1"
     implementation "com.android.support:support-annotations:27.1.1"
     implementation "com.android.support:design:27.1.1"
+
+    implementation 'de.greenrobot:eventbus:2.4.0'
 }
 
 repositories {

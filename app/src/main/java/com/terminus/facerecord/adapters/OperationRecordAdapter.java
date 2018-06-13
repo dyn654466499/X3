@@ -9,11 +9,13 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.terminus.facerecord.R;
+import com.terminus.facerecord.beans.OperationRecordBean;
+
 import java.util.List;
 
-public class FloorAdapter extends BaseAdapter {
+public class OperationRecordAdapter extends BaseAdapter {
 
-    List<String> data;
+    List<OperationRecordBean> data;
     LayoutInflater inflater;
     private int selectItem=0;
 
@@ -22,7 +24,7 @@ public class FloorAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    public FloorAdapter(Context context, List<String> data) {
+    public OperationRecordAdapter(Context context, List<OperationRecordBean> data) {
         this.data = data;
         inflater=LayoutInflater.from(context);
     }
@@ -34,7 +36,7 @@ public class FloorAdapter extends BaseAdapter {
     }
 
     @Override
-    public String getItem(int position) {
+    public OperationRecordBean getItem(int position) {
         return data.get(position);
     }
 
@@ -43,34 +45,32 @@ public class FloorAdapter extends BaseAdapter {
         return position;
     }
 
-    public int getPosition(String text){
-        return data.indexOf(text);
-    }
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = inflater.inflate(R.layout.adapter_item_floor, null);
-            holder.tv_floor = convertView.findViewById(R.id.tv_floor);
+            convertView = inflater.inflate(R.layout.adapter_item_operation_record, null);
+            holder.tv_member_name = convertView.findViewById(R.id.tv_member_name);
+            holder.tv_uptown_name = convertView.findViewById(R.id.tv_uptown_name);
+            holder.tv_operation_type = convertView.findViewById(R.id.tv_operation_type);
+            holder.tv_operation_time = convertView.findViewById(R.id.tv_operation_time);
             convertView.setTag(holder);
         }else {
             holder= (ViewHolder) convertView.getTag();
         }
-
-        holder.tv_floor.setText(data.get(position));
-
-        if (selectItem == position) {
-            holder.tv_floor.setTextColor(Color.BLUE);
-        }else {
-            holder.tv_floor.setTextColor(Color.BLACK);
-        }
-
+        OperationRecordBean bean = data.get(position);
+        holder.tv_member_name.setText(bean.memberName);
+        holder.tv_uptown_name.setText(bean.uptownName);
+        holder.tv_operation_type.setText(bean.operateType);
+        holder.tv_operation_time.setText(bean.operateTime);
         return convertView;
     }
 
     public static class ViewHolder{
-        TextView tv_floor;
+        TextView tv_member_name;
+        TextView tv_uptown_name;
+        TextView tv_operation_type;
+        TextView tv_operation_time;
     }
 }

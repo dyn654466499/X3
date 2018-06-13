@@ -13,6 +13,14 @@
         android:padding="10dp"
         >
 
+        <ImageView
+            android:id="@+id/iv_home_drawer"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/hp_icon_key"
+            android:layout_centerVertical="true"
+            />
+
         <LinearLayout
             android:id="@+id/lLayout_uptown"
             android:layout_centerInParent="true"
@@ -20,9 +28,10 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/tv_home_select_uptown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="选择小区"
+                android:text="请选择小区"
                 android:textSize="20sp"
                 android:textColor="#333333"
                 />
@@ -49,7 +58,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="楼栋："
+                android:text="楼栋单元： "
                 android:textSize="16sp"
                 android:textColor="#666666"
                 />
@@ -57,9 +66,9 @@
                 android:id="@+id/tv_building_unit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1栋3单元"
+                android:text="请选择楼栋单元"
                 android:textSize="16sp"
-                android:textColor="#666666"
+                android:textColor="#333333"
                 />
         </LinearLayout>
         <View
@@ -71,7 +80,7 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/lLayout_info"
+        android:id="@+id/lLayout_info_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -110,10 +119,11 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/lLayout_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@id/lLayout_info"
+        android:layout_below="@id/lLayout_info_title"
         >
 
         <ListView

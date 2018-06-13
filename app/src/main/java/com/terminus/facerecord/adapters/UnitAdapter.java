@@ -9,9 +9,10 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.terminus.facerecord.R;
+
 import java.util.List;
 
-public class FloorAdapter extends BaseAdapter {
+public class UnitAdapter extends BaseAdapter {
 
     List<String> data;
     LayoutInflater inflater;
@@ -22,11 +23,19 @@ public class FloorAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    public FloorAdapter(Context context, List<String> data) {
+    public void setData(List<String> data) {
+        this.data = data;
+        notifyDataSetChanged();
+    }
+
+    public UnitAdapter(Context context, List<String> data) {
         this.data = data;
         inflater=LayoutInflater.from(context);
     }
 
+    public int getPosition(String text){
+        return data.indexOf(text);
+    }
 
     @Override
     public int getCount() {
@@ -43,34 +52,29 @@ public class FloorAdapter extends BaseAdapter {
         return position;
     }
 
-    public int getPosition(String text){
-        return data.indexOf(text);
-    }
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = inflater.inflate(R.layout.adapter_item_floor, null);
-            holder.tv_floor = convertView.findViewById(R.id.tv_floor);
+            convertView = inflater.inflate(R.layout.adapter_item_unit, null);
+            holder.tv_unit = convertView.findViewById(R.id.tv_unit);
             convertView.setTag(holder);
         }else {
             holder= (ViewHolder) convertView.getTag();
         }
 
-        holder.tv_floor.setText(data.get(position));
-
+        holder.tv_unit.setText(data.get(position));
         if (selectItem == position) {
-            holder.tv_floor.setTextColor(Color.BLUE);
+            holder.tv_unit.setTextColor(Color.BLUE);
         }else {
-            holder.tv_floor.setTextColor(Color.BLACK);
+            holder.tv_unit.setTextColor(Color.BLACK);
         }
 
         return convertView;
     }
 
     public static class ViewHolder{
-        TextView tv_floor;
+        TextView tv_unit;
     }
 }
