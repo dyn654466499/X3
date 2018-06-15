@@ -383,15 +383,15 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_logout:
-                DialogUtils.showDialog(this, "确定要退出登录吗？", new DialogUtils.DialogCommand() {
+                DialogUtils.showDialog(this, "确定要退出登录吗？","","", new DialogUtils.DialogCommand() {
                     @Override
-                    public void onSure() {
+                    public void onLeftConfirm() {
                         LoginManager.getInstance().logout();
                         finish();
                     }
 
                     @Override
-                    public void onCancel() {
+                    public void onRightConfirm() {
 
                     }
                 });

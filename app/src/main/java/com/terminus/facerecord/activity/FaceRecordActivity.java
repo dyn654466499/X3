@@ -8,7 +8,10 @@ import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.speech.tts.TextToSpeech;
+import android.support.annotation.Nullable;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,11 +28,17 @@ import com.terminus.facedetectsdk.utils.CommonUtils;
 import com.terminus.facedetectsdk.utils.DrawViewUtils;
 import com.terminus.facedetectsdk.utils.UserFaceUtils;
 import com.terminus.facerecord.R;
+import com.terminus.facerecord.constants.Config;
 import com.terminus.facerecord.mvp.FaceRecord.FaceRecordContract;
 import com.terminus.facerecord.mvp.FaceRecord.FaceRecordPresenter;
+import com.terminus.facerecord.utils.DialogUtils;
+import com.terminus.facerecord.utils.LogUtils;
 import com.terminus.facerecord.views.ViewfinderView;
 
+import org.json.JSONObject;
+
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -39,6 +48,12 @@ import dou.helper.CameraParams;
 import dou.utils.BitmapUtil;
 import dou.utils.DLog;
 import dou.utils.DisplayUtil;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okio.BufferedSink;
 
 import static com.terminus.facerecord.activity.FaceRecordActivity.FaceDirection.DOWN;
 import static com.terminus.facerecord.activity.FaceRecordActivity.FaceDirection.FRONT;
@@ -104,7 +119,9 @@ public class FaceRecordActivity extends BaseActivity implements FaceRecordContra
     private ImageView iv_record_step1,iv_record_step2,
             iv_record_step3,iv_record_step4,iv_record_step5;
     private ViewfinderView view_scanner;
-
+    private Handler mHandler;
+    private static final int MSG_UPLOAD_SUCCESS = 0;
+    private static final int MSG_UPLOAD_FAIL = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -138,6 +155,36 @@ public class FaceRecordActivity extends BaseActivity implements FaceRecordContra
                 canShoot = true;
                 isTimerStarted = false;
                 tv_timer.setText("");
+            }
+        };
+
+        mHandler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                switch (msg.what){
+                    case MSG_UPLOAD_SUCCESS:
+                        dismissLoadingDialog();
+                        showTip("上传成功");
+                        finish();
+                        break;
+
+                    case MSG_UPLOAD_FAIL:
+                        dismissLoadingDialog();
+                        DialogUtils.showDialog(FaceRecordActivity.this, "上传失败，请重新上传",
+                                "取消","重新上传",new DialogUtils.DialogCommand() {
+                            @Override
+                            public void onLeftConfirm() {
+                                resetData();
+                            }
+
+                            @Override
+                            public void onRightConfirm() {
+                                uploadFaceImages();
+                            }
+                        });
+                        break;
+                }
             }
         };
     }
@@ -195,7 +242,15 @@ public class FaceRecordActivity extends BaseActivity implements FaceRecordContra
 //                camera_view.setLayoutParams(params);
 //            }
 //        });
+    }
 
+    private void resetData(){
+        CUR_FACE_DIRECTION = FRONT;
+        iv_record_step1.setImageResource(R.drawable.tp_icon_step1);
+        iv_record_step2.setImageResource(R.drawable.tp_icon_step2);
+        iv_record_step3.setImageResource(R.drawable.tp_icon_step3);
+        iv_record_step4.setImageResource(R.drawable.tp_icon_step4);
+        iv_record_step5.setImageResource(R.drawable.tp_icon_step5);
     }
 
     private void speech(String text){
@@ -324,7 +379,7 @@ public class FaceRecordActivity extends BaseActivity implements FaceRecordContra
 
     @Override
     public void drawTrackView(List<FaceInfo> faces, byte[] frame) {
-        DrawViewUtils.drawFaceTackView(this, faces, draw_view, scale_bit, mCameraHelper.getCameraId());
+//        DrawViewUtils.drawFaceTackView(this, faces, draw_view, scale_bit, mCameraHelper.getCameraId());
         if(faces != null && faces.size() > 1){
             Toast.makeText(this, "不能同时录入多个人的脸", Toast.LENGTH_SHORT);
             return;
@@ -504,7 +559,7 @@ public class FaceRecordActivity extends BaseActivity implements FaceRecordContra
                         saveImageFromCamera(personId, DOWN.ordinal(), frame);
                         iv_record_step5.setImageResource(R.drawable.tp_icon_done);
                         CUR_FACE_DIRECTION = FaceDirection.END;
-
+                        uploadFaceImages();
                     }
                 }
                 CUR_ADD_TEXT = "低头照片";
@@ -617,21 +672,7 @@ public class FaceRecordActivity extends BaseActivity implements FaceRecordContra
 
     @Override
     public void onBackPressed() {
-        if (CUR_FACE_DIRECTION == FaceDirection.END || mPersonId == -111) {
-            finish();
-        } else {
-//            new AlertDialog.Builder(this).
-//                    setTitle(R.string.dalog_notice).setMessage(String.format(getString(R.string.dialog_msg1), String.valueOf(getCurFaceCount())))
-//                    .setNegativeButton(R.string._sure_out, new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialogInterface, int i) {
-//                            FaceDetect.getInstance().deletePerson(mPersonId);
-//                            DBUtils.getInstance().deleteById(String.valueOf(mPersonId));
-//                            finish();
-//                        }
-//                    }).setPositiveButton(R.string._keep_pre, null).
-//                    create().show();
-        }
+        super.onBackPressed();
     }
 
     private int getCurFaceCount(){
@@ -656,7 +697,51 @@ public class FaceRecordActivity extends BaseActivity implements FaceRecordContra
         }
     }
 
+    /**
+     * 上传图片
+     */
     private void uploadFaceImages(){
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                showLoadingDialog(FaceRecordActivity.this, "上传照片中");
+                try {
+                    OkHttpClient client = new OkHttpClient();//创建OkHttpClient对象
+                    RequestBody body = new RequestBody() {
+                        @Nullable
+                        @Override
+                        public MediaType contentType() {
+                            return null;
+                        }
+
+                        @Override
+                        public void writeTo(BufferedSink sink) throws IOException {
+
+                        }
+                    };
+                    Request request = new Request.Builder()
+                            .url(Config.BASE_HOST + "time")
+//                    .post(body)
+                            .get()
+                            .build();//创建Request 对象
+                    Response response = client.newCall(request).execute();//得到Response 对象
+                    LogUtils.d("kwwl", "response.code()==" + response.code());
+                    if(response.code() == 200){
+                        String json = response.body().string();
+                        LogUtils.d("kwwl", "response.message()==" + response.message());
+                        LogUtils.d("kwwl", "res==" + json);
+                        JSONObject data = new JSONObject(json);
+                        mHandler.sendMessageDelayed(Message.obtain(mHandler,MSG_UPLOAD_SUCCESS), 5000);
+                    }else{
+                        mHandler.sendMessageDelayed(Message.obtain(mHandler,MSG_UPLOAD_FAIL), 5000);
+                    }
+                    response.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                    mHandler.sendMessageDelayed(Message.obtain(mHandler,MSG_UPLOAD_FAIL), 5000);
+                }
+            }
+        });
 
     }
 }

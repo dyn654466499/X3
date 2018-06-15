@@ -7,6 +7,17 @@
 
     <include
         layout="@layout/layout_common_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <include
+        layout="@layout/layout_network_error"
+        android:id="@+id/layout_network_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:visibility="gone"
         />
 
     <ListView

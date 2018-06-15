@@ -2,6 +2,8 @@ package com.terminus.facerecord.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -42,6 +44,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     private Button btn_login;
     private CheckBox ck_password_eye;
     private String curMobile;
+    private Handler mHandler;
+    private static final int MSG_LOGIN_SUCCESS = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,6 +132,24 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 }
             }
         });
+
+        mHandler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                switch (msg.what){
+                    case MSG_LOGIN_SUCCESS:
+                        dismissLoadingDialog();
+                        String mobile = (String)msg.obj;
+                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                        LoginManager.getInstance().setLogin();
+                        SPUtils.putString(LoginActivity.this, "curMobile", mobile);
+                        SPUtils.putString(LoginActivity.this, "lastMobile", mobile);
+                        finish();
+                        break;
+                }
+            }
+        };
     }
 
     @Override
@@ -199,18 +221,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 LogUtils.d("kwwl", "response.message()==" + response.message());
                 LogUtils.d("kwwl", "res==" + json);
                 JSONObject data = new JSONObject(json);
-
-                startActivity(new Intent(this, HomeActivity.class));
-                LoginManager.getInstance().setLogin();
-                SPUtils.putString(this, "curMobile", mobile);
-                SPUtils.putString(this, "lastMobile", mobile);
-                finish();
+                mHandler.sendMessageDelayed(Message.obtain(mHandler,MSG_LOGIN_SUCCESS, mobile), 3000);
+            }else{
+                dismissLoadingDialog();
             }
             response.close();
         }catch (Exception e){
             e.printStackTrace();
+            dismissLoadingDialog();
         }
-        dismissLoadingDialog();
     }
 }
 

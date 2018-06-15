@@ -24,6 +24,7 @@ public class LoadingDialog extends AlertDialog {
     Activity mParentActivity;
     private OnDismissListener dismissListener;
     private OnCancelListener cancelListener;
+    private TextView tv_loading_msg;
     /**
      * 构造函数
      *
@@ -45,34 +46,26 @@ public class LoadingDialog extends AlertDialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_dialog_progress);
-//        Animation animation1 = AnimationUtils.loadAnimation(getContext(), R.anim.loading_anim);
-        ImageView iv_loading_icon = (ImageView)findViewById(R.id.iv_loading_icon);
-//        iv_loading_icon.startAnimation(animation1);
-        ImageView iv_loading_cancel = (ImageView)findViewById(R.id.iv_loading_cancel);
-        iv_loading_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
-                if(clickDismissListener != null){
-                    clickDismissListener.onClickDismiss();
-                }
-            }
-        });
+//        ImageView iv_loading_icon = (ImageView)findViewById(R.id.iv_loading_icon);
+
         if(!TextUtils.isEmpty(loadingText)){
-            TextView tv_loading_msg = (TextView) findViewById(R.id.tv_loading_msg);
+            tv_loading_msg = findViewById(R.id.tv_loading_msg);
             tv_loading_msg.setText(loadingText);
         }
 
-        AlphaAnimation alphaAnimation1 = new AlphaAnimation(0.5f, 1.0f);
-        alphaAnimation1.setDuration(500);
-        alphaAnimation1.setRepeatCount(Animation.INFINITE);
-        alphaAnimation1.setRepeatMode(Animation.REVERSE);
-        iv_loading_icon.setAnimation(alphaAnimation1);
-        alphaAnimation1.start();
+//        AlphaAnimation alphaAnimation1 = new AlphaAnimation(0.5f, 1.0f);
+//        alphaAnimation1.setDuration(500);
+//        alphaAnimation1.setRepeatCount(Animation.INFINITE);
+//        alphaAnimation1.setRepeatMode(Animation.REVERSE);
+//        iv_loading_icon.setAnimation(alphaAnimation1);
+//        alphaAnimation1.start();
     }
 
     private String loadingText;
     public void setLoadingText(final String text){
+        if(tv_loading_msg != null){
+            tv_loading_msg.setText(text);
+        }
         loadingText = text;
     }
 

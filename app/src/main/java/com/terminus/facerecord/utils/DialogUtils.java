@@ -1,14 +1,13 @@
 package com.terminus.facerecord.utils;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -26,7 +25,8 @@ public class DialogUtils {
 	 * @param context
 	 * @param sureCommand 自定义命令（按确定键执行）
 	 */
-	public static void showDialog(Context context, String content, final DialogCommand sureCommand) {
+	public static void showDialog(Context context, String content,
+								  String leftText, String rightText, final DialogCommand sureCommand) {
 		View layout = LayoutInflater.from(context).inflate(R.layout.layout_dialog,null);
 		TextView tv_dialog_content = layout.findViewById(R.id.tv_dialog_content);
 		tv_dialog_content.setText(content);
@@ -35,12 +35,18 @@ public class DialogUtils {
 		final Dialog dialog = new AlertDialog.Builder(context)
 				.setCancelable(false)
 				.create();
+		if(!TextUtils.isEmpty(leftText)){
+			tv_dialog_sure.setText(leftText);
+		}
+		if(!TextUtils.isEmpty(rightText)){
+			tv_dialog_cancel.setText(rightText);
+		}
 		tv_dialog_sure.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				dialog.dismiss();
 				if(sureCommand != null){
-					sureCommand.onSure();
+					sureCommand.onLeftConfirm();
 				}
 			}
 		});
@@ -49,7 +55,7 @@ public class DialogUtils {
 			public void onClick(View v) {
 				dialog.dismiss();
 				if(sureCommand != null){
-					sureCommand.onCancel();
+					sureCommand.onRightConfirm();
 				}
 			}
 		});
@@ -76,7 +82,7 @@ public class DialogUtils {
 			public void onClick(View v) {
 				dialog.dismiss();
 				if(sureCommand != null){
-					sureCommand.onSure();
+					sureCommand.onLeftConfirm();
 				}
 			}
 		});
@@ -116,7 +122,7 @@ public class DialogUtils {
 								// TODO Auto-generated method stub
 								dialog.dismiss();
 								if(sureCommand != null){
-									sureCommand.onSure();
+									sureCommand.onLeftConfirm();
 								}
 							}
 						})
@@ -129,7 +135,7 @@ public class DialogUtils {
 								// TODO Auto-generated method stub
 								dialog.dismiss();
 								if(sureCommand != null){
-									sureCommand.onCancel();
+									sureCommand.onRightConfirm();
 								}
 							}
 						}).create();
@@ -138,7 +144,7 @@ public class DialogUtils {
 	}
 
 	public interface DialogCommand{
-		void onSure();
-		void onCancel();
+		void onLeftConfirm();
+		void onRightConfirm();
 	}
 }

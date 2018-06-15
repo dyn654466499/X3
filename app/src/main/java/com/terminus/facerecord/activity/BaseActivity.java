@@ -78,8 +78,19 @@ public class BaseActivity extends AppCompatActivity {
                 mLoadingDialog.show();
             }
         });
-
     }
+
+    protected void setLoadingText(final String message) {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (!TextUtils.isEmpty(message) && mLoadingDialog != null){
+                    mLoadingDialog.setLoadingText(message);
+                }
+            }
+        });
+    }
+
     /**
      * 使加载对话框消失
      */
