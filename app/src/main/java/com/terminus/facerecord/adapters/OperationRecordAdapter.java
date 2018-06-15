@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.terminus.facerecord.R;
 import com.terminus.facerecord.beans.OperationRecordBean;
+import com.terminus.facerecord.utils.CommonUtils;
 
 import java.util.List;
 
@@ -60,7 +61,7 @@ public class OperationRecordAdapter extends BaseAdapter {
             holder= (ViewHolder) convertView.getTag();
         }
         OperationRecordBean bean = data.get(position);
-        holder.tv_member_name.setText(bean.memberName);
+        holder.tv_member_name.setText(CommonUtils.formatNameWithStar(bean.memberName));
         holder.tv_uptown_name.setText(bean.uptownName);
         holder.tv_operation_type.setText(bean.operateType);
         holder.tv_operation_time.setText(bean.operateTime);

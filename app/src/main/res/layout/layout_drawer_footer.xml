@@ -10,12 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:textSize="16dp"
-        android:textColor="#ffffff"
+        android:textColor="#17AE86"
         android:text="退出登录"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="30dp"
-        android:background="@color/md_blue_600"
-        android:layout_marginTop="100dp"
+        android:background="@drawable/theme_btn_circle_alpha_inactive"
+        android:layout_marginTop="150dp"
         />
 
 </RelativeLayout>

@@ -9,7 +9,7 @@ public class RoomBean implements IPickerViewData {
 
     /**
      * name : 1楼
-     * room : [{"name":"101","members":[{"name":"邓*","head":"hp_icon_key"}]},{"name":"102","members":[{"name":"邓*","head":"hp_icon_key"}]},{"name":"103","members":[{"name":"邓*","head":"hp_icon_key"}]},{"name":"104"},{"name":"105"},{"name":"106"}]
+     * room : [{"name":"101","members":[{"name":"邓*","type":"hp_icon_key"}]},{"name":"102","members":[{"name":"邓*","type":"hp_icon_key"}]},{"name":"103","members":[{"name":"邓*","type":"hp_icon_key"}]},{"name":"104"},{"name":"105"},{"name":"106"}]
      */
 
     private String name;
@@ -39,7 +39,7 @@ public class RoomBean implements IPickerViewData {
     public static class Room {
         /**
          * name : 101
-         * members : [{"name":"邓*","head":"hp_icon_key"}]
+         * members : [{"name":"邓*","type":"hp_icon_key"}]
          */
 
         private String name;
@@ -65,11 +65,11 @@ public class RoomBean implements IPickerViewData {
     public static class MembersBean {
         /**
          * name : 邓*
-         * head : hp_icon_key
+         * type : hp_icon_key
          */
 
         private String name;
-        private String head;
+        private String type;
 
         public String getName() {
             return name;
@@ -79,12 +79,12 @@ public class RoomBean implements IPickerViewData {
             this.name = name;
         }
 
-        public String getHead() {
-            return head;
+        public String getType() {
+            return type;
         }
 
-        public void setHead(String head) {
-            this.head = head;
+        public void setType(String type) {
+            this.type = type;
         }
     }
 }

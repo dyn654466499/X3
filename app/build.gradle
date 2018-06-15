@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.terminus.facerecord"
+        applicationId "com.android.terminus"
         minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
@@ -57,6 +57,7 @@ dependencies {
     implementation "com.android.support:design:27.1.1"
 
     implementation 'de.greenrobot:eventbus:2.4.0'
+    implementation 'com.qianwen:update-app:3.5.2'
 }
 
 repositories {

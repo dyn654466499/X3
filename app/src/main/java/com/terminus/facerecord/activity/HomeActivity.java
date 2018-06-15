@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -22,10 +23,12 @@ import com.mikepenz.materialdrawer.holder.BadgeStyle;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.terminus.facerecord.R;
+import com.terminus.facerecord.adapters.BuildingAdapter;
 import com.terminus.facerecord.adapters.FloorAdapter;
 import com.terminus.facerecord.adapters.MembersAdapter;
 import com.terminus.facerecord.adapters.RoomAdapter;
 import com.terminus.facerecord.adapters.UnitAdapter;
+import com.terminus.facerecord.adapters.UptownAdapter;
 import com.terminus.facerecord.beans.BuildingBean;
 import com.terminus.facerecord.beans.RoomBean;
 import com.terminus.facerecord.events.LoginEvent;
@@ -52,8 +55,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener{
     private Drawer homeDrawer;
     private ImageView iv_home_drawer;
     private Context mContext;
-    private FloorAdapter buildingAdapter;
-    private UnitAdapter unitAdapter, uptownAdapter;
+    private BuildingAdapter buildingAdapter;
+    private UnitAdapter unitAdapter;
+    private UptownAdapter uptownAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,10 +102,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener{
                 .withHeader(R.layout.layout_drawer_header)
                 .withFooter(R.layout.layout_drawer_footer)
                 .withFooterDivider(false)
+                .withHeaderDivider(false)
                 .withSelectedItemByPosition(-1)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName(R.string.operation_record).withIcon(R.drawable.hp_icon_key).withSelectable(false).withSetSelected(false),
-                        new PrimaryDrawerItem().withName(R.string.app_version).withBadge(CommonUtils.getVersionName(this)).withIcon(R.drawable.hp_icon_key).withSelectable(false).withSetSelected(false).withBadgeStyle(style)
+                        new PrimaryDrawerItem().withName(R.string.operation_record).withIcon(R.drawable.user_icon_record).withSelectable(false).withSetSelected(false),
+                        new PrimaryDrawerItem().withName(R.string.app_version).withBadge(CommonUtils.getVersionName(this)).withIcon(R.drawable.user_icon_version).withSelectable(false).withSetSelected(false).withBadgeStyle(style)
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
@@ -112,7 +117,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener{
                                 startActivity(new Intent(HomeActivity.this, OperationRecordActivity.class));
                                 break;
                             case 2:
-
+                                //TODO 检测新版本
                                 break;
                         }
                         return true;
@@ -136,16 +141,27 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener{
 
     private void createUptownData(){
         final List<String> option1 = mockUptown();
-        uptownAdapter = new UnitAdapter(this, option1);
+        uptownAdapter = new UptownAdapter(this, option1);
         String uptown = SPUtils.getString(this, "uptown");
         uptownPosition = uptownAdapter.getPosition(uptown);
         if(uptownPosition != -1){
-            tv_home_select_uptown.setText(uptown);
+            tv_home_select_uptown.setText(formatUptownTitle(uptown));
             toggleBuildingVisible(true);
         }else{
-            toggleBuildingVisible(false);
-            toggleHouseInfoVisible(false);
+            resetData();
         }
+    }
+
+    private void resetData(){
+        tv_home_select_uptown.setText("请选择小区");
+        tv_building_unit.setText("请选择楼栋单元");
+        uptownPosition = 0;
+        buildingPosition = 0;
+        unitPosition = 0;
+        floorPosition = 0;
+        roomPosition = 0;
+        toggleBuildingVisible(false);
+        toggleHouseInfoVisible(false);
     }
 
     private AdapterView.OnItemClickListener buildingListener;
@@ -170,7 +186,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener{
             e.printStackTrace();
         }
 
-        buildingAdapter = new FloorAdapter(this, option1);
+        buildingAdapter = new BuildingAdapter(this, option1);
         String building = SPUtils.getString(this, "building");
         buildingPosition = buildingAdapter.getPosition(building);
 
@@ -182,7 +198,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener{
             tv_building_unit.setText(building + unit);
             toggleHouseInfoVisible(true);
         }else{
-            toggleHouseInfoVisible(false);
+            resetData();
         }
         buildingListener = new AdapterView.OnItemClickListener() {
             @Override
@@ -222,7 +238,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener{
                 uptownAdapter.setSelectItem(position);
                 uptownPosition = position;
                 pop.dismiss();
-                tv_home_select_uptown.setText(uptownAdapter.getItem(position));
+                tv_home_select_uptown.setText(formatUptownTitle(uptownAdapter.getItem(position)));
                 toggleBuildingVisible(true);
                 SPUtils.putString(mContext, "uptown", uptownAdapter.getItem(position));
             }
@@ -309,8 +325,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener{
         lv_floor.setAdapter(floorAdapter);
         floorPosition = floorAdapter.getPosition(SPUtils.getString(mContext,"floor"));
         if(floorPosition == -1){
-            toggleHouseInfoVisible(false);
-            floorPosition = 0;
+            resetData();
         }
         floorAdapter.setSelectItem(floorPosition);
 
@@ -319,8 +334,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener{
         lv_room.setAdapter(roomAdapter);
         roomPosition = roomAdapter.getPosition(SPUtils.getString(mContext,"room"));
         if(roomPosition == -1){
-            toggleHouseInfoVisible(false);
-            roomPosition = 0;
+            resetData();
         }
         roomAdapter.setSelectItem(roomPosition);
 
@@ -369,7 +383,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_logout:
-                DialogUtils.showDialog(this, "", "确定退出当前账号吗", new DialogUtils.DialogCommand() {
+                DialogUtils.showDialog(this, "确定要退出登录吗？", new DialogUtils.DialogCommand() {
                     @Override
                     public void onSure() {
                         LoginManager.getInstance().logout();
@@ -422,4 +436,17 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener{
         uptowns.add("恒大小区");
         return uptowns;
     }
+
+    public static String formatUptownTitle(String uptown){
+        if(TextUtils.isEmpty(uptown) || uptown.length() <= 9) {
+            return uptown;
+        }
+        String begin = uptown.substring(0,5);
+        String end = uptown.substring(uptown.length() - 3,uptown.length());
+        return begin + "..." + end;
+    }
+
+//    public static void main(String args[]){
+//        System.out.print(formatUptownTitle("测试时试试伺候帝豪是是是"));
+//    }
 }

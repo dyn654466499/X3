@@ -57,7 +57,7 @@ public class UnitAdapter extends BaseAdapter {
         ViewHolder holder = null;
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = inflater.inflate(R.layout.adapter_item_unit, null);
+            convertView = inflater.inflate(R.layout.adapter_item_unit,  parent, false);
             holder.tv_unit = convertView.findViewById(R.id.tv_unit);
             convertView.setTag(holder);
         }else {
@@ -66,9 +66,11 @@ public class UnitAdapter extends BaseAdapter {
 
         holder.tv_unit.setText(data.get(position));
         if (selectItem == position) {
-            holder.tv_unit.setTextColor(Color.BLUE);
+            holder.tv_unit.setTextColor(Color.parseColor("#17AE86"));
+            convertView.setBackgroundColor(Color.parseColor("#F8F8F8"));
         }else {
-            holder.tv_unit.setTextColor(Color.BLACK);
+            holder.tv_unit.setTextColor(Color.parseColor("#666666"));
+            convertView.setBackgroundColor(Color.parseColor("#ffffff"));
         }
 
         return convertView;

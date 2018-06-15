@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tv_unit"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:textAppearance="?android:attr/textAppearanceListItemSmall"
-    android:gravity="center_vertical"
-    android:text="DDDDD"
-    android:textColor="#666666"
-    android:textSize="16sp"
+    android:layout_height="50dp"
     android:paddingLeft="15dp"
-    android:minHeight="?android:attr/listPreferredItemHeightSmall"
     >
-</TextView>
+
+    <TextView
+        android:id="@+id/tv_unit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="DDDDD"
+        android:textColor="#666666"
+        android:textSize="16sp"
+        />
+</RelativeLayout>

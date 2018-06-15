@@ -94,8 +94,8 @@ public class CustomEditText extends AppCompatEditText {
 			if (i > getRight() - 3 * this.rBounds.width()) {
 				if (mRightListener != null) {
 					mRightListener.onDrawableRightClick(this) ;
-				} else
-					setText("");
+				}
+				setText("");
 				paramMotionEvent.setAction(MotionEvent.ACTION_CANCEL);
 			}
 		}

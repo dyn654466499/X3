@@ -1,5 +1,6 @@
 package com.terminus.facerecord.activity;
 
+import android.Manifest;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.terminus.facerecord.managers.AppManager;
+import com.terminus.facerecord.utils.PermissionsUtils;
 import com.terminus.facerecord.views.LoadingDialog;
 
 import java.util.concurrent.LinkedBlockingQueue;
@@ -37,6 +39,16 @@ public class BaseActivity extends AppCompatActivity {
             executor = new ThreadPoolExecutor(2, 5, 3000, TimeUnit.SECONDS,
                     new LinkedBlockingQueue<Runnable>(3),
                     new ThreadPoolExecutor.DiscardOldestPolicy());
+
+        PermissionsUtils.
+                with(this).
+                addPermission(Manifest.permission.ACCESS_FINE_LOCATION).
+                addPermission(Manifest.permission.ACCESS_COARSE_LOCATION).
+                addPermission(Manifest.permission.READ_EXTERNAL_STORAGE).
+                addPermission(Manifest.permission.CAMERA).
+                addPermission(Manifest.permission.CALL_PHONE).
+                addPermission(Manifest.permission.READ_PHONE_STATE).
+                initPermission();
     }
 
     /**

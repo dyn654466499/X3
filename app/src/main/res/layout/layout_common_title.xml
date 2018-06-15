@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#ffffff"
+    android:background="#4A4A4A"
     >
 
     <RelativeLayout
@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="标题"
-            android:textColor="#333333"
+            android:textColor="#ffffff"
             android:textSize="18sp"
             android:layout_centerInParent="true"
             />
@@ -31,7 +31,7 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/hp_icon_key"
+                android:src="@drawable/icon_backw"
                 android:layout_gravity="center"
                 />
 
@@ -39,17 +39,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="返回"
-                android:textColor="#333333"
+                android:textColor="#ffffff"
                 android:textSize="16sp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="3dp"
                 />
         </LinearLayout>
     </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#999999"
-        android:layout_alignParentBottom="true"
-        />
+
 </RelativeLayout>

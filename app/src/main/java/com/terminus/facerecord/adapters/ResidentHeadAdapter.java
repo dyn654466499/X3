@@ -46,7 +46,7 @@ public class ResidentHeadAdapter extends BaseAdapter {
         }else {
             holder= (ViewHolder) convertView.getTag();
         }
-        Glide.with(inflater.getContext()).load(R.drawable.hp_icon_key).into(holder.iv_member_head);
+        Glide.with(inflater.getContext()).load(R.drawable.hp_icon_head).into(holder.iv_member_head);
         return convertView;
     }
 

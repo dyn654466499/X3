@@ -15,19 +15,21 @@ import java.util.Date;
 import java.util.List;
 
 public class OperationRecordActivity extends BaseActivity implements View.OnClickListener{
-
+    private ListView lv_operation_record;
+    private TextView tv_record_no_data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_operation_record);
         findViewById(R.id.lLayout_title_back).setOnClickListener(this);
         ((TextView)findViewById(R.id.tv_common_title)).setText("操作记录");
+        tv_record_no_data = findViewById(R.id.tv_record_no_data);
+        lv_operation_record = findViewById(R.id.lv_operation_record);
 
-        ListView lv_operation_record = findViewById(R.id.lv_operation_record);
         List<OperationRecordBean> data = new ArrayList<>();
         for(int i = 0; i < 10;i++){
             OperationRecordBean bean = new OperationRecordBean();
-            bean.uptownName = "动感小区-1栋1单元-2楼204号";
+            bean.uptownName = "动感小区-113栋123单元-22楼2204号";
             bean.memberName = "邓耀宁";
             bean.operateType = "更新";
             SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -38,6 +40,11 @@ public class OperationRecordActivity extends BaseActivity implements View.OnClic
         }
         OperationRecordAdapter adapter = new OperationRecordAdapter(this, data);
         lv_operation_record.setAdapter(adapter);
+    }
+
+    private void hasNoData(){
+        tv_record_no_data.setVisibility(View.VISIBLE);
+        lv_operation_record.setVisibility(View.GONE);
     }
 
     @Override

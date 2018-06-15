@@ -1,5 +1,6 @@
 package com.terminus.facerecord.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -63,7 +64,7 @@ public class ResidentInfoActivity extends BaseActivity implements View.OnClickLi
                 break;
 
             case R.id.btn_resident_record:
-
+                startActivity(new Intent(this, FaceRecordActivity.class));
                 break;
         }
     }

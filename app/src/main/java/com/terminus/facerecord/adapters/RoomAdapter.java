@@ -57,25 +57,25 @@ public class RoomAdapter extends BaseAdapter {
         ViewHolder holder = null;
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = inflater.inflate(R.layout.adapter_item_floor, null);
-            holder.tv_floor = convertView.findViewById(R.id.tv_floor);
+            convertView = inflater.inflate(R.layout.adapter_item_room, parent,false);
+            holder.tv_room = convertView.findViewById(R.id.tv_room);
             convertView.setTag(holder);
         }else {
             holder= (ViewHolder) convertView.getTag();
         }
 
-        holder.tv_floor.setText(data.get(position));
+        holder.tv_room.setText(data.get(position));
 
         if (selectItem == position) {
-            holder.tv_floor.setTextColor(Color.BLUE);
+            holder.tv_room.setBackgroundColor(Color.parseColor("#7717AE86"));
         }else {
-            holder.tv_floor.setTextColor(Color.BLACK);
+            holder.tv_room.setBackgroundColor(Color.parseColor("#ffffff"));
         }
 
         return convertView;
     }
 
     public static class ViewHolder{
-        TextView tv_floor;
+        TextView tv_room;
     }
 }

@@ -9,191 +9,244 @@
         layout="@layout/layout_common_title"
         />
 
-
-    <LinearLayout
-        android:id="@+id/lLayout_resident_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-        <RelativeLayout
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_marginTop="40dp"
+       >
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="60dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/rLayout_select_uptown"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
             >
-
             <LinearLayout
+                android:id="@+id/lLayout_resident_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/rLayout_select_uptown"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_centerVertical="true"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="住户姓名： "
+                            android:textSize="16sp"
+                            android:textColor="#333333"
+                            />
+                        <TextView
+                            android:id="@+id/tv_resident_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="李*"
+                            android:textSize="16sp"
+                            android:textColor="#333333"
+                            />
+                    </LinearLayout>
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1px"
+                        android:background="#dddddd"
+                        android:layout_alignParentBottom="true"
+                        />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/rLayout_select_uptown"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_centerVertical="true"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="手机号码： "
+                            android:textSize="16sp"
+                            android:textColor="#333333"
+                            />
+                        <TextView
+                            android:id="@+id/tv_resident_mobile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1栋3单元"
+                            android:textSize="16sp"
+                            android:textColor="#333333"
+                            />
+                    </LinearLayout>
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1px"
+                        android:background="#dddddd"
+                        android:layout_alignParentBottom="true"
+                        />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/rLayout_select_uptown"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_centerVertical="true"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="身份证号： "
+                            android:textSize="16sp"
+                            android:textColor="#333333"
+                            />
+                        <TextView
+                            android:id="@+id/tv_resident_identification"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1栋3单元"
+                            android:textSize="16sp"
+                            android:textColor="#333333"
+                            />
+                    </LinearLayout>
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1px"
+                        android:background="#dddddd"
+                        android:layout_alignParentBottom="true"
+                        />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_below="@id/lLayout_resident_info"
+                android:background="#f8f8f8"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="人脸照片："
+                    android:textColor="#333333"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_centerVertical="true"
+                    />
+            </RelativeLayout>
+
+
+            <com.terminus.facerecord.views.XGridView
+                android:id="@+id/gv_resident_head"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="住户姓名： "
-                    android:textSize="16sp"
-                    android:textColor="#666666"
-                    />
-                <TextView
-                    android:id="@+id/tv_resident_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="李*"
-                    android:textSize="16sp"
-                    android:textColor="#666666"
-                    />
-            </LinearLayout>
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:background="#999999"
-                android:layout_alignParentBottom="true"
+                android:layout_below="@id/lLayout_resident_info"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:numColumns="3"
+                android:gravity="center"
+                android:horizontalSpacing="20dp"
+                android:verticalSpacing="20dp"
                 />
-        </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/rLayout_select_uptown"
-            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    >
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/hp_icon_head"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#333333"
+                        android:textSize="16sp"
+                        android:text="暂无人脸照片，请先录入"
+                        android:layout_marginTop="10dp"
+                        />
+                </LinearLayout>
+            </RelativeLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="手机号码： "
-                    android:textSize="16sp"
-                    android:textColor="#666666"
-                    />
-                <TextView
-                    android:id="@+id/tv_resident_mobile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1栋3单元"
-                    android:textSize="16sp"
-                    android:textColor="#666666"
-                    />
-            </LinearLayout>
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:background="#999999"
-                android:layout_alignParentBottom="true"
-                />
-        </RelativeLayout>
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal"
+                 android:layout_above="@id/btn_resident_record"
+                 android:layout_marginBottom="10dp"
+                 android:layout_marginTop="20dp"
+                 android:layout_centerVertical="true"
+                 android:gravity="center"
+                 >
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/rLayout_select_uptown"
-            >
+                 <CheckBox
+                     android:id="@+id/cb_sure_identification"
+                     android:layout_width="14dp"
+                     android:layout_height="14dp"
+                     android:button="@drawable/check_resident_sure"
+                     />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="身份证号： "
-                    android:textSize="16sp"
-                    android:textColor="#666666"
-                    />
-                <TextView
-                    android:id="@+id/tv_resident_identification"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1栋3单元"
-                    android:textSize="16sp"
-                    android:textColor="#666666"
-                    />
-            </LinearLayout>
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:background="#999999"
-                android:layout_alignParentBottom="true"
-                />
-        </RelativeLayout>
-    </LinearLayout>
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="我已核实住户信息，可以开始人脸录入"
+                     android:textSize="14sp"
+                     android:textColor="#666666"
+                     android:layout_marginLeft="5dp"
+                     />
+             </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="人脸照片："
-        android:textColor="#666666"
-        android:textSize="18sp"
-        android:layout_below="@id/lLayout_resident_info"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
-        />
-
-    <GridView
-        android:id="@+id/gv_resident_head"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/lLayout_resident_info"
-        android:layout_marginTop="70dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:numColumns="3"
-        android:gravity="center"
-        android:horizontalSpacing="10dp"
-        android:verticalSpacing="10dp"
-        />
-
-     <LinearLayout
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:orientation="horizontal"
-         android:layout_above="@id/btn_resident_record"
-         android:layout_marginLeft="30dp"
-         android:layout_marginBottom="10dp"
-         >
-
-         <CheckBox
-             android:id="@+id/cb_sure_identification"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-
-             />
-
-         <TextView
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="勾选表示住户信息已核实"
-             android:textSize="14sp"
-             android:textColor="#999999"
-             />
-     </LinearLayout>
-
-     <Button
-         android:id="@+id/btn_resident_record"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:text="录入"
-         android:textSize="16sp"
-         android:background="@drawable/theme_button"
-         android:layout_alignParentBottom="true"
-         android:layout_marginLeft="30dp"
-         android:layout_marginRight="30dp"
-         android:layout_marginBottom="30dp"
-         />
+            <Button
+                 android:id="@+id/btn_resident_record"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:text="录入"
+                 android:textSize="16sp"
+                 android:background="@drawable/theme_btn_circle_alpha"
+                 android:layout_alignParentBottom="true"
+                 android:layout_marginTop="5dp"
+                 android:layout_marginLeft="38dp"
+                 android:layout_marginRight="38dp"
+                 android:layout_marginBottom="30dp"
+                  />
+        </LinearLayout>
+   </ScrollView>
 </RelativeLayout>

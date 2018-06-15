@@ -6,7 +6,19 @@
 					"name": "101",
 				  	"members":[
 						{
-							"name":"邓*",
+							"name":"邓耀宁",
+							"head":"hp_icon_key"
+						},
+						{
+							"name":"邓耀宁",
+							"head":"hp_icon_key"
+						},
+						{
+							"name":"邓耀宁",
+							"head":"hp_icon_key"
+						},
+						{
+							"name":"邓耀宁",
 							"head":"hp_icon_key"
 						}
 					]
@@ -15,7 +27,15 @@
 					"name": "102",
 					"members":[
 						{
-							"name":"邓*",
+							"name":"邓小平",
+							"head":"hp_icon_key"
+						},
+						{
+							"name":"邓耀宁",
+							"head":"hp_icon_key"
+						},
+						{
+							"name":"邓耀宁",
 							"head":"hp_icon_key"
 						}
 					]
@@ -24,7 +44,7 @@
 					"name": "103",
 					"members":[
 						{
-							"name":"邓*",
+							"name":"邓先生",
 							"head":"hp_icon_key"
 						}
 					]
@@ -47,7 +67,7 @@
  					"name": "201",
 					  "members":[
 						  {
-							  "name":"谢*",
+							  "name":"谢星星",
 							  "head":"hp_icon_key"
 						  }
 					  ]
@@ -56,7 +76,15 @@
  					"name": "202",
 					"members":[
 						{
-							"name":"谢*",
+							"name":"谢小星",
+							"head":"hp_icon_key"
+						},
+						{
+							"name":"邓耀宁",
+							"head":"hp_icon_key"
+						},
+						{
+							"name":"邓耀宁",
 							"head":"hp_icon_key"
 						}
 					]
@@ -65,7 +93,11 @@
  					"name": "203",
 					"members":[
 						{
-							"name":"谢*",
+							"name":"谢谢",
+							"head":"hp_icon_key"
+						},
+						{
+							"name":"邓耀宁",
 							"head":"hp_icon_key"
 						}
 					]
@@ -87,7 +119,11 @@
 					  "name": "301",
 					  "members":[
 						  {
-							  "name":"李*",
+							  "name":"李开",
+							  "head":"hp_icon_key"
+						  },
+						  {
+							  "name":"邓耀宁",
 							  "head":"hp_icon_key"
 						  }
 					  ]
@@ -99,7 +135,15 @@
  					"name": "303",
 					"members":[
 						{
-							"name":"李*",
+							"name":"李金",
+							"head":"hp_icon_key"
+						},
+						{
+							"name":"邓耀宁",
+							"head":"hp_icon_key"
+						},
+						{
+							"name":"邓耀宁",
 							"head":"hp_icon_key"
 						}
 					]
@@ -121,7 +165,11 @@
  					"name": "401",
 					  "members":[
 						  {
-							  "name":"李*",
+							  "name":"李开金",
+							  "head":"hp_icon_key"
+						  },
+						  {
+							  "name":"邓耀宁",
 							  "head":"hp_icon_key"
 						  }
 					  ]

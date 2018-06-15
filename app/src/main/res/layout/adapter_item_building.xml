@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    >
+
+    <TextView
+        android:id="@+id/tv_building"
+        android:layout_width="105dp"
+        android:layout_height="32dp"
+        android:gravity="center"
+        android:text="DDDDD"
+        android:textColor="#666666"
+        android:textSize="16sp"
+        android:layout_centerInParent="true"
+        />
+</RelativeLayout>

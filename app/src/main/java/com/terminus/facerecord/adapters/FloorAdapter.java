@@ -52,7 +52,7 @@ public class FloorAdapter extends BaseAdapter {
         ViewHolder holder = null;
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = inflater.inflate(R.layout.adapter_item_floor, null);
+            convertView = inflater.inflate(R.layout.adapter_item_floor, parent, false);
             holder.tv_floor = convertView.findViewById(R.id.tv_floor);
             convertView.setTag(holder);
         }else {
@@ -62,9 +62,9 @@ public class FloorAdapter extends BaseAdapter {
         holder.tv_floor.setText(data.get(position));
 
         if (selectItem == position) {
-            holder.tv_floor.setTextColor(Color.BLUE);
+            holder.tv_floor.setBackgroundColor(Color.parseColor("#7717AE86"));
         }else {
-            holder.tv_floor.setTextColor(Color.BLACK);
+            holder.tv_floor.setBackgroundColor(Color.parseColor("#ffffff"));
         }
 
         return convertView;

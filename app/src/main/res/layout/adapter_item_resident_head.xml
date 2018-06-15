@@ -9,8 +9,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerInParent="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/hp_icon_key"
+        android:src="@drawable/hp_icon_head"
         >
     </ImageView>
 </RelativeLayout>

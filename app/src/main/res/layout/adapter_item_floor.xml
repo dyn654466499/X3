@@ -2,12 +2,10 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/tv_floor"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:textAppearance="?android:attr/textAppearanceListItemSmall"
+    android:layout_height="50dp"
     android:gravity="center"
     android:text="DDDDD"
-    android:textColor="#666666"
+    android:textColor="#333333"
     android:textSize="16sp"
-    android:minHeight="?android:attr/listPreferredItemHeightSmall"
     >
 </TextView>

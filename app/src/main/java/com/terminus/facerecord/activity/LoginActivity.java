@@ -18,8 +18,10 @@ import com.terminus.facerecord.R;
 import com.terminus.facerecord.constants.Config;
 import com.terminus.facerecord.managers.LoginManager;
 import com.terminus.facerecord.utils.CommonUtils;
+import com.terminus.facerecord.utils.DialogUtils;
 import com.terminus.facerecord.utils.LogUtils;
 import com.terminus.facerecord.utils.SPUtils;
+import com.terminus.facerecord.views.CustomEditText;
 
 import org.json.JSONObject;
 
@@ -36,7 +38,7 @@ import okio.BufferedSink;
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends BaseActivity implements View.OnClickListener{
-    private EditText et_login_password,et_login_mobile;
+    private CustomEditText et_login_password,et_login_mobile;
     private Button btn_login;
     private CheckBox ck_password_eye;
     private String curMobile;
@@ -44,6 +46,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
         if(SPUtils.getBoolean(this,"isLogin")){
             startActivity(new Intent(this, HomeActivity.class));
@@ -53,6 +56,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
         et_login_password = findViewById(R.id.et_login_password);
         et_login_mobile = findViewById(R.id.et_login_mobile);
+        findViewById(R.id.iv_login_back).setOnClickListener(this);
 
         curMobile = SPUtils.getString(this, "lastMobile");
         if(!TextUtils.isEmpty(curMobile)){
@@ -98,6 +102,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 }
             }
         });
+        et_login_mobile.setDrawableRightListener(new CustomEditText.DrawableRightListener() {
+            @Override
+            public void onDrawableRightClick(View view) {
+                curMobile = "";
+            }
+        });
         et_login_password.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -128,6 +138,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 final String password = et_login_password.getText().toString();
                 if(CommonUtils.isPhoneNum(mobile)){
                     if(CommonUtils.checkPassword(password)){
+                        if(!Config.isPrd){
+                            showTip("手机号:"+mobile);
+                        }
                         executor.execute(new Runnable() {
                             @Override
                             public void run() {
@@ -136,10 +149,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                             }
                         });
                     }else{
-                        showTip("密码格式不正确");
+                        showTip("密码格式错误");
                     }
                 }else{
-                    showTip("手机号格式不正确");
+                    if(Config.isPrd){
+                        showTip("手机号格式错误");
+                    }else{
+                        showTip("手机号格式错误:" + mobile);
+                    }
                 }
                 break;
 
@@ -149,6 +166,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                     et_login_mobile.setText("");
                 }
                 break;
+
+            case R.id.iv_login_back:
+                finish();
         }
     }
 

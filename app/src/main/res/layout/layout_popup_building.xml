@@ -9,25 +9,40 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
+        android:padding="15dp"
+        android:background="#4A4A4A"
         >
 
         <ImageView
             android:id="@+id/iv_close"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/hp_icon_key"
+            android:src="@drawable/hp_icon_close"
             android:layout_centerVertical="true"
             />
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="选择楼栋单元"
-            android:textColor="#333333"
-            android:textSize="20sp"
+            android:orientation="horizontal"
+            android:gravity="center"
             android:layout_centerInParent="true"
-            />
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择楼栋单元"
+                android:textColor="#ffffff"
+                android:textSize="18sp"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/hp_icon_down"
+                android:layout_marginLeft="5dp"
+                />
+        </LinearLayout>
+
     </RelativeLayout>
 
     <View
@@ -46,16 +61,21 @@
             android:id="@+id/lv_buildings"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="1.2"
             android:scrollbars="none"
-            android:background="#dddddd"
+            />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="#DDDDDD"
             />
 
         <ListView
             android:id="@+id/lv_units"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2.5"
+            android:layout_weight="2"
             android:scrollbars="none"
             />
     </LinearLayout>

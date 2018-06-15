@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.terminus.facerecord.R;
 import com.terminus.facerecord.activity.ResidentInfoActivity;
 import com.terminus.facerecord.beans.RoomBean;
+import com.terminus.facerecord.utils.CommonUtils;
 
 import java.util.List;
 
@@ -71,9 +72,13 @@ public class MembersAdapter extends BaseAdapter {
         }else {
             holder= (ViewHolder) convertView.getTag();
         }
-        holder.tv_member_name.setText(data.get(position).getName());
-        //data.get(position).getHead()
-        Glide.with(mContext).load(R.drawable.hp_icon_key).into(holder.iv_member_head);
+        RoomBean.MembersBean member = data.get(position);
+        holder.tv_member_name.setText(CommonUtils.formatNameWithStar(member.getName()));
+        if("0".equals(member.getType())){
+            Glide.with(mContext).load(R.drawable.hp_icon_nohead).into(holder.iv_member_head);
+        }else{
+            Glide.with(mContext).load(R.drawable.hp_icon_noentered).into(holder.iv_member_head);
+        }
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

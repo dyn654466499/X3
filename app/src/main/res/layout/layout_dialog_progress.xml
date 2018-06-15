@@ -17,7 +17,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="right"
-            android:src="@drawable/submit_edit_clear_pressed"
+            android:src="@drawable/lg_icon_clear"
             />
 
         <RelativeLayout

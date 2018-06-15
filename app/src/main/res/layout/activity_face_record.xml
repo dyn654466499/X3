@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    >
+
+    <RelativeLayout
+        android:id="@+id/rLayout_record_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        >
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/tp_icon_close"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="人脸信息录入"
+            android:textColor="#333333"
+            android:textSize="20sp"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+
+    <SurfaceView
+        android:id="@+id/camera_preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rLayout_record_title"
+        android:layout_centerInParent="true"
+        />
+
+    <SurfaceView
+        android:id="@+id/pointView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@null"
+        android:layout_below="@id/rLayout_record_title"
+        />
+
+    <com.terminus.facerecord.views.ViewfinderView
+        android:id="@+id/view_scanner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rLayout_record_title"
+        >
+    </com.terminus.facerecord.views.ViewfinderView>
+
+    <TextView
+        android:id="@+id/tv_record_step"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        android:text="提示"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/rLayout_record_title"
+        />
+
+    <TextView
+        android:id="@+id/tv_record_tips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        android:text="提示"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tv_record_step"
+        />
+
+    <TextView
+        android:id="@+id/tv_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="90dp"
+        android:text=""
+        android:gravity="center"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        android:textColor="#f26f4e"
+        />
+
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:orientation="horizontal"
+         android:layout_alignParentBottom="true"
+         android:gravity="center"
+         android:background="#ffffff"
+         android:layout_below="@id/camera_preview"
+         >
+
+         <ImageView
+             android:id="@+id/iv_record_step1"
+             android:layout_width="25dp"
+             android:layout_height="25dp"
+             android:src="@drawable/tp_icon_step1"
+             android:scaleType="fitXY"
+             />
+         <ImageView
+             android:id="@+id/iv_record_step2"
+             android:layout_width="25dp"
+             android:layout_height="25dp"
+             android:src="@drawable/tp_icon_step2"
+             android:layout_marginLeft="15dp"
+             />
+         <ImageView
+             android:id="@+id/iv_record_step3"
+             android:layout_width="25dp"
+             android:layout_height="25dp"
+             android:src="@drawable/tp_icon_step3"
+             android:layout_marginLeft="15dp"
+             />
+         <ImageView
+             android:id="@+id/iv_record_step4"
+             android:layout_width="25dp"
+             android:layout_height="25dp"
+             android:src="@drawable/tp_icon_step4"
+             android:layout_marginLeft="15dp"
+             />
+         <ImageView
+             android:id="@+id/iv_record_step5"
+             android:layout_width="25dp"
+             android:layout_height="25dp"
+             android:src="@drawable/tp_icon_step5"
+             android:layout_marginLeft="15dp"
+             />
+     </LinearLayout>
+</RelativeLayout>

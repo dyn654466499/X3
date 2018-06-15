@@ -5,14 +5,23 @@
     android:gravity="center_horizontal"
     android:background="#ffffff"
     android:orientation="vertical"
-    android:padding="30dp"
+    android:padding="15dp"
     >
+
+    <ImageView
+        android:id="@+id/iv_login_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_backb"
+        android:layout_gravity="left"
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="20sp"
+        android:textSize="23sp"
+        android:layout_marginTop="10dp"
         android:text="登录"
         android:textColor="#333333"
         />
@@ -21,19 +30,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:orientation="vertical">
 
         <com.terminus.facerecord.views.CustomEditText
             android:id="@+id/et_login_mobile"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:hint="请输入手机号"
-            android:textColorHint="#999999"
+            android:textColorHint="#cccccc"
             android:textColor="#333333"
+            android:textSize="16sp"
             android:inputType="phone"
             android:background="@null"
-            android:drawableRight="@drawable/submit_edit_clear_pressed"
-            android:paddingRight="25dp"
+            android:drawableRight="@drawable/lg_icon_clear"
+            android:paddingRight="15dp"
             android:textCursorDrawable="@null"
             android:maxLength="11"
             android:maxLines="1"
@@ -41,16 +53,16 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#999999"
-            android:layout_marginTop="10dp"
+            android:layout_height="1px"
+            android:background="#dddddd"
             />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_height="60dp"
             android:orientation="horizontal"
+            android:paddingRight="15dp"
+            android:gravity="center"
             >
 
             <com.terminus.facerecord.views.CustomEditText
@@ -60,14 +72,15 @@
                 android:layout_height="wrap_content"
                 android:hint="请输入密码"
                 android:textColor="#333333"
-                android:textColorHint="#999999"
+                android:textSize="16sp"
+                android:textColorHint="#cccccc"
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:maxLength="16"
                 android:singleLine="true"
                 android:background="@null"
-                android:drawableRight="@drawable/submit_edit_clear_pressed"
-                android:paddingRight="15dp"
+                android:drawableRight="@drawable/lg_icon_clear"
+                android:paddingRight="30dp"
                 android:textCursorDrawable="@null"
                 />
 
@@ -82,19 +95,18 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#999999"
-            android:layout_marginTop="10dp"
+            android:layout_height="1px"
+            android:background="#dddddd"
             />
 
         <Button
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:text="登录"
             android:textSize="16sp"
-            android:background="@drawable/theme_button"
+            android:background="@drawable/theme_btn_circle_alpha"
              />
 
     </LinearLayout>
